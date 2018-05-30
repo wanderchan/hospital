@@ -1,0 +1,170 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>省级预约挂号统一平台</title>
+    <!-- Bootstrap Styles-->
+    <link href="/static/css/bootstrap.css" rel="stylesheet" />
+    <!-- FontAwesome Styles-->
+    <link href="/static/css/font-awesome.css" rel="stylesheet" />
+    <!-- Morris Chart Styles-->
+    <link href="/static/js/morris/morris-0.4.3.min.css" rel="stylesheet" />
+    <!-- Custom Styles-->
+    <link href="/static/css/custom-styles.css" rel="stylesheet" />
+    <!-- Google Fonts-->
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css' />
+    <link rel="stylesheet" href="/static/js/Lightweight-Chart/cssCharts.css">
+            <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+        <!--[if lt IE 9]>
+            <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+        <![endif]-->
+    <script src="/static/simple/js/jquery-1.10.2.js"></script>
+    <script src="/static/js/bootstrap.min.js"></script>
+    <script src="/static/js/jquery.metisMenu.js"></script>
+    <script src="/static/js/custom-scripts.js"></script>
+</head>
+
+<body>
+    <div id="wrapper">
+        <nav class="navbar navbar-default top-navbar" role="navigation">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="admin"><strong>挂号系统管理员</strong></a>
+        </nav>
+        <!--/. NAV TOP  -->
+        <nav class="navbar-default navbar-side" role="navigation">
+            <div class="sidebar-collapse">
+                <ul class="nav" id="main-menu">
+                    <li>
+                        <a href="admin"><i class="fa fa-dashboard"></i> 数据统计</a>
+                    </li>
+                    <li>
+                        <a class="active-menu" href="bingren.html"><i class="fa fa-desktop"></i> 病人管理</a>
+                    </li>
+					<li>
+                        <a href="#"><i class="fa fa-bar-chart-o"></i> 医院管理<span class="fa arrow"></span></a>                        <ul class="nav nav-second-level">
+                        <ul class="nav nav-second-level">
+                                    <li>
+                                        <a href="yiyuan.html">医院人员管理</a>
+                                    </li>
+                                    <li>
+                                        <a  href="keshi.html">医院科室管理</a>
+                                    </li>
+                                    <li>
+                                        <a href="yaopin.html">医院药品管理</a>
+                                    </li>
+                                </ul>
+
+                    </li>
+                </ul>
+                    <li>
+                        <a href="guanli.html"><i class="fa fa-qrcode"></i> 管理员管理</a>
+                    </li>
+                    </ul>
+            </div>
+
+        </nav>
+        <!-- /. NAV SIDE  -->
+      
+		<div id="page-wrapper">
+		  <div class="header"> 
+                        <h1 class="page-header">
+                            病人管理 <small>Welcome </small>
+                        </h1>
+						<ol class="breadcrumb">
+					  <li><a href="admin">首页</a></li>
+					  <li class="active"><a href="bingren.html">返回所有病人信息管理页面</a> </li>
+					</ol> 
+									
+		</div>
+            <div id="page-inner">
+
+                <!-- /. ROW  -->
+	                    <div class="col-md-12 col-sm-12 col-xs-12">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                           病人：{{ name.realname }} 账号：{{ name.userid }}的挂号信息：
+                        </div>
+                        <div class="panel-body">
+                            <div class="table-responsive">
+                                <table class="table">
+                                    <thead>
+                                            <tr>
+                                                <form action="guahao.html" method="post">
+                                                <th><input class="form-control" placeholder="挂号时间" name="addtime"></th>
+                                                <th><input class="form-control" placeholder="医生编号" name="yishengid"></th>
+                                                <th><input class="form-control" placeholder="诊断" name="zhengduan"></th>
+                                                <th><input class="form-control" placeholder="药品编号" name="yaopin"></th>
+                                                <th><input class="form-control" placeholder="诊断时间" name="zhengduantime"></th>
+                                                <th><input class="form-control" placeholder="科室编号" name="keshiid"></th>
+                                                <th><input class="form-control" placeholder="是否完成" name="guahaostatus"></th>
+                                                <th colspan="2"><button type="submit" class="btn btn-success" name ='ghuserid' value="{{ name.userid }}" >新增</button></th>
+                                                </form>
+                                            </tr>
+                                            <tr>
+                                                <th width="8%">挂号时间</th>
+                                                <th width="8%">医生编号</th>
+                                                <th width="10%">诊断</th>
+                                                <th width="12%">药品编号</th>
+                                                <th width="6%">诊断时间</th>
+                                                <th width="6%">科室编号</th>
+                                                <th width="6%">是否完成</th>
+                                                <th colspan="2" width="14%">操作</th>
+                                            </tr>
+                                            {% for line in data %}
+                                                <tr>
+                                                    <th>{{ line.addtime|date:"Y-m-d"}}</th>
+                                                    <th>{{ line.yishengid}}</th>
+                                                    <th>{{ line.zhengduan}}</th>
+                                                    <th>{{ line.yaopin}}</th>
+                                                    <th>{{ line.zhengduantime|date:"Y-m-d" }}</th>
+                                                    <th>{{ line.keshiid}}</th>
+                                                    <th>{{ line.guahaostatus}}</th>
+                                                    <th><button type="button" class="btn btn-primary" onclick='document.getElementById("{{ line.guahaoid }}").style.display="table-row"'>修改</button></th>
+                                                    <th><form action="guahao.html" method="post">
+                                                        <input type="hidden" name="quxiao" value="3">
+                                                        <input type="hidden" name="ghuserid" value="{{ name.userid }}">
+                                                        <button type="submit" class="btn btn-danger" name ='shanchuid' value="{{ line.guahaoid }}">删除</button></form></th>
+                                                </tr>
+                                                <tr style="display: none;"  id ="{{ line.guahaoid }}" class="warning">
+                                                    <form action="guahao.html" method="post">
+                                                        <input type="hidden" name ="quxiao" value="2">
+                                                    <td><input type="text" class="form-control" name="addtime"  value="{{ line.addtime|date:"Y-m-d"}}"></td>
+                                                    <td><input type="text" class="form-control" name="yishengid"  value="{{ line.yishengid}}"></td>
+                                                    <td><input type="text" class="form-control" name="zhengduan"  value="{{ line.zhengduan}}"></td>
+                                                    <td><input type="text" class="form-control" name="yaopin"  value="{{ line.yaopin}}"></td>
+                                                    <td><input type="text" class="form-control" name="zhengduantime"  value="{{ line.zhengduantime|date:"Y-m-d"}}"></td>
+                                                    <td><input type="text" class="form-control" name="keshiid"  value="{{ line.keshiid}}"></td>
+                                                    <td><input type="text" class="form-control" name="guahaostatus"  value="{{ line.guahaostatus}}"></td>
+                                                        <td><input type="hidden" name="ghuserid" value="{{ name.userid }}">
+                                                            <button type="submit" class="btn btn-danger" name ='xiugaiid' value="{{ line.guahaoid }}">确定</button>
+                                                        </td></form>
+                                                <td><button type="button" class="btn btn-success" onclick='document.getElementById("{{ line.guahaoid }}").style.display="none"'>取消</button></td>
+                                                </tr>
+                                            {% endfor %}
+                                        </thead>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+            				<footer>
+				  <p><div class="text" style=" text-align:right;">made from<a href="https://github.com/wanderchan/hospital" target="_blank" title="wanderchan"> Wander_Chan</a></div> </p>
+				</footer>
+           </div>
+            <!-- /. PAGE INNER  -->
+        </div>
+        <!-- /. PAGE WRAPPER  -->
+    </div>
+    <!-- /. WRAPPER  -->
+
+
+      <script>
+    
+      </script>
+
+</body>
+
+</html>

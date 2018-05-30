@@ -1,0 +1,385 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>省级预约挂号统一平台</title>
+    <!-- Bootstrap Styles-->
+    <link href="/static/css/bootstrap.css" rel="stylesheet" />
+    <!-- FontAwesome Styles-->
+    <link href="/static/css/font-awesome.css" rel="stylesheet" />
+    <!-- Morris Chart Styles-->
+    <link href="/static/js/morris/morris-0.4.3.min.css" rel="stylesheet" />
+    <!-- Custom Styles-->
+    <link href="/static/css/custom-styles.css" rel="stylesheet" />
+    <!-- Google Fonts-->
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css' />
+    <link rel="stylesheet" href="/static/js/Lightweight-Chart/cssCharts.css">
+            <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+        <!--[if lt IE 9]>
+            <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+        <![endif]-->
+    <script src="/static/simple/js/jquery-1.10.2.js"></script>
+    <script src="/static/js/bootstrap.min.js"></script>
+    <script src="/static/js/jquery.metisMenu.js"></script>
+    <script src="/static/js/morris/raphael-2.1.0.min.js"></script>
+    <script src="/static/js/morris/morris.js"></script>
+    <script src="/static/js/custom-scripts.js"></script>
+</head>
+
+<body>
+    <div id="wrapper">
+        <nav class="navbar navbar-default top-navbar" role="navigation">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="admin"><strong>挂号系统管理员</strong></a>
+        </nav>
+        <!--/. NAV TOP  -->
+        <nav class="navbar-default navbar-side" role="navigation">
+            <div class="sidebar-collapse">
+                <ul class="nav" id="main-menu">
+                    <li>
+                        <a class="active-menu" href="admin"><i class="fa fa-dashboard"></i> 数据统计</a>
+                    </li>
+                    <li>
+                        <a  href="bingren.html"><i class="fa fa-desktop"></i> 病人管理</a>
+                    </li>
+					<li>
+                        <a href="#"><i class="fa fa-bar-chart-o"></i> 医院管理<span class="fa arrow"></span></a>                        <ul class="nav nav-second-level">
+                        <ul class="nav nav-second-level">
+                                    <li>
+                                        <a href="yiyuan.html">医院人员管理</a>
+                                    </li>
+                                    <li>
+                                        <a  href="keshi.html">医院科室管理</a>
+                                    </li>
+                                    <li>
+                                        <a href="yaopin.html">医院药品管理</a>
+                                     </li>
+                                </ul>
+
+                    </li>
+                </ul>
+                    <li>
+                        <a href="guanli.html"><i class="fa fa-qrcode"></i> 管理员管理</a>
+                    </li>
+                    </ul>
+            </div>
+
+        </nav>
+        <!-- /. NAV SIDE  -->
+
+		<div id="page-wrapper">
+		  <div class="header">
+                        <h1 class="page-header">
+                            数据统计 <small>Welcome </small>
+                        </h1>
+						<ol class="breadcrumb">
+					  <li><a href="#">首页</a></li>
+					  <li class="active">数据统计</li>
+					</ol>
+
+		</div>
+            <div id="page-inner">
+                <div class="row">
+                    <div class="col-md-3 col-sm-12 col-xs-12">
+                        <div class="panel panel-primary text-center no-boder blue">
+                            <div class="panel-left pull-left blue">
+                                <i class="fa fa-users fa-5x"></i>
+
+                            </div>
+                            <div class="panel-right">
+								<h3>{{ zongrenshu }}人</h3>
+                               <strong> 总注册用户数</strong>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-sm-12 col-xs-12">
+                        <div class="panel panel-primary text-center no-boder blue">
+                              <div class="panel-left pull-left blue">
+                                <i class="fa fa-shopping-cart fa-5x"></i>
+								</div>
+
+                            <div class="panel-right">
+							<h3>
+                                {{ money }} 元</h3>
+                               <strong> 账户总余额</strong>
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-sm-12 col-xs-12">
+                        <div class="panel panel-primary text-center no-boder blue">
+                            <div class="panel-left pull-left blue">
+                                <i class="fa fa-eye fa-5x"></i>
+
+                            </div>
+                            <div class="panel-right">
+							 <h3>{{ jinguahao }}人 </h3>
+                               <strong> 今日挂号人数 </strong>
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-sm-12 col-xs-12">
+                        <div class="panel panel-primary text-center no-boder blue">
+                            <div class="panel-left pull-left blue">
+                                <i class="fa fa-users fa-5x"></i>
+
+                            </div>
+                            <div class="panel-right">
+							<h3>{{ huanzherenshu }}人</h3>
+                             <strong>总患者人数</strong>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+			<div class="row">
+
+
+						   <div class="col-md-8 col-sm-12 col-xs-12">
+				<div class="panel panel-default">
+					<div class="panel-heading">
+						一周以来挂号人数走势
+					</div>
+					<div class="panel-body">
+						<div id="myfirstchart" ></div>
+                    </div>
+					</div>
+				</div>
+
+            <div class="col-md-4 col-sm-12 col-xs-12">
+				<div class="panel panel-default">
+					<div class="panel-heading">
+						各科室历史就诊总人数分布
+					</div>
+					<div class="panel-body">
+						<div id="donut-example"></div>
+					</div>
+				</div>
+			</div>
+
+	   </div>
+			 <!-- /. ROW  -->
+			<div class="row">
+
+            <div class="col-md-4 col-sm-12 col-xs-12">
+				<div class="panel panel-default">
+					<div class="panel-heading">
+						科室医生人数分布
+					</div>
+					<div class="panel-body">
+						<div id="keshiyisheng"></div>
+					</div>
+				</div>
+			</div>
+
+			 <div class="col-md-8 col-sm-12 col-xs-12" >
+				<div class="panel panel-default">
+                     <div class="panel-heading">
+                            各科室每日挂号人数
+                        </div>
+                        <div class="panel-body">
+                            <ul class="nav nav-pills">
+                                <li class="active"><a href="#home-pills" data-toggle="tab">{{ k1 }}</a>
+                                </li>
+                                <li class=""><a href="#profile-pills" data-toggle="tab">{{ k2 }}</a>
+                                </li>
+                                <li class=""><a href="#messages-pills" data-toggle="tab">{{ k3 }}</a>
+                                </li>
+                                <li class=""><a href="#settings-pills" data-toggle="tab">{{ k4 }}</a>
+                                </li>
+                                <li class=""><a href="#diwuge-pills" data-toggle="tab">{{ k5 }}</a>
+                                </li>
+                            </ul>
+
+                            <div class="tab-content" style="height: 342px">
+                                <div class="tab-pane fade active in" id="home-pills">
+                                    <div class="panel-body">
+						            <div id="ke1" ></div>
+				            	</div>
+                                </div>
+                                <div class="tab-pane fade active" id="profile-pills">
+                                    <div class="panel-body">
+						            <div id="ke2"></div>
+				            	</div>
+                                </div>
+                                <div class="tab-pane fade active" id="messages-pills">
+                                    <div class="panel-body">
+						            <div id="ke3"></div>
+				            	</div>
+                                </div>
+                                <div class="tab-pane fade active" id="settings-pills">
+                                    <div class="panel-body">
+						            <div id="ke4"></div>
+				            	</div>
+                                </div>
+                                <div class="tab-pane fade active" id="diwuge-pills">
+                                    <div class="panel-body">
+						            <div id="ke5" ></div>
+				            	</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+			</div>
+
+	   </div>
+
+            				<footer>
+				  <p><div class="text" style=" text-align:right;">made from<a href="https://github.com/wanderchan/hospital" target="_blank" title="wanderchan"> Wander_Chan</a></div> </p>
+				</footer>
+           </div>
+            <!-- /. PAGE INNER  -->
+        </div>
+        <!-- /. PAGE WRAPPER  -->
+    </div>
+    <!-- /. WRAPPER  -->
+
+    <script>
+        var date = new Date();
+        var seperator1 = "-";
+        var year = date.getFullYear();
+        var month = date.getMonth() + 1;
+        var strDate = date.getDate();
+        if (month >= 1 && month <= 9) {
+            month = "0" + month;
+        }
+        if (strDate >= 0 && strDate <= 9) {
+            strDate = "0" + strDate;
+        }
+        var a = year + seperator1 + month + seperator1 + strDate;
+    </script>
+
+      <script>
+new Morris.Line({
+  element: 'myfirstchart',
+  data: [
+    { day: '{{ d7 }}', value: {{d7g}}},
+    { day: '{{ d6 }}', value: {{d6g}}},
+    { day: '{{ d5 }}', value: {{d5g}}},
+    { day: '{{ d4 }}', value: {{d4g}}},
+    { day: '{{ d3 }}', value: {{d3g}}},
+    { day: '{{ d2 }}', value: {{d2g}}},
+    { day: '{{ d1 }}', value: {{jinguahao}}}
+  ],
+  xkey: 'day',
+  ykeys: ['value'],
+  labels: ['人数']
+});
+      </script>
+          <script>
+new Morris.Donut({
+  element: 'donut-example',
+  data: [
+    {label: "{{ k1 }}", value:{{ neike }} },
+    {label: "{{ k2 }}", value: {{waike}}},
+    {label: "{{ k3 }}", value: {{ erbihou }} },
+    {label: "{{ k4 }}", value: {{ yake }} },
+    {label: "{{ k5 }}", value: {{ yanke }} }
+  ]
+});
+</script>
+              <script>
+new Morris.Donut({
+  element: 'keshiyisheng',
+  data: [
+    {label: "{{ k1 }}", value:{{ neike1 }} },
+    {label: "{{ k2 }}", value: {{waike1}}},
+    {label: "{{ k3 }}", value: {{ erbihou1 }} },
+    {label: "{{ k4 }}", value: {{ yake1 }} },
+    {label: "{{ k5 }}", value: {{ yanke1 }} }
+  ]
+});
+</script>
+<script>
+new    Morris.Bar({
+  element: 'ke1',
+  data: [
+    { day: '{{ d7 }}', value: {{ke1wd7}},value2:{{ke1yd7}} },
+    { day: '{{ d6 }}', value: {{ke1wd6}},value2:{{ke1yd6}} },
+    { day: '{{ d5 }}', value: {{ke1wd5}},value2:{{ke1yd5}} },
+    { day: '{{ d4 }}', value: {{ke1wd4}},value2:{{ke1yd4}} },
+    { day: '{{ d3 }}', value: {{ke1wd3}},value2:{{ke1yd3}} },
+    { day: '{{ d2 }}', value: {{ke1wd2}},value2:{{ke1yd2}} },
+    { day: '{{ d1 }}', value: {{ke1wd1}},value2:{{ke1yd1}} }
+  ],
+  xkey: 'day',
+  ykeys: ['value','value2'],
+  labels: ['未处理人数','已处理人数']
+});
+</script>
+<script>
+new    Morris.Bar({
+  element: 'ke2',
+  data: [
+    { day: '{{ d7 }}', value: {{ke2wd7}},value2:{{ke2yd7}} },
+    { day: '{{ d6 }}', value: {{ke2wd6}},value2:{{ke2yd6}} },
+    { day: '{{ d5 }}', value: {{ke2wd5}},value2:{{ke2yd5}} },
+    { day: '{{ d4 }}', value: {{ke2wd4}},value2:{{ke2yd4}} },
+    { day: '{{ d3 }}', value: {{ke2wd3}},value2:{{ke2yd3}} },
+    { day: '{{ d2 }}', value: {{ke2wd2}},value2:{{ke2yd2}} },
+    { day: '{{ d1 }}', value: {{ke2wd1}},value2:{{ke2yd1}} }
+  ],
+  xkey: 'day',
+  ykeys: ['value','value2'],
+  labels: ['未处理人数','已处理人数']
+});
+</script>
+<script>
+new    Morris.Bar({
+  element: 'ke3',
+  data: [
+    { day: '{{ d7 }}', value: {{ke3wd7}},value2:{{ke3yd7}} },
+    { day: '{{ d6 }}', value: {{ke3wd6}},value2:{{ke3yd6}} },
+    { day: '{{ d5 }}', value: {{ke3wd5}},value2:{{ke3yd5}} },
+    { day: '{{ d4 }}', value: {{ke3wd4}},value2:{{ke3yd4}} },
+    { day: '{{ d3 }}', value: {{ke3wd3}},value2:{{ke3yd3}} },
+    { day: '{{ d2 }}', value: {{ke3wd2}},value2:{{ke3yd2}} },
+    { day: '{{ d1 }}', value: {{ke3wd1}},value2:{{ke3yd1}} }
+  ],
+  xkey: 'day',
+  ykeys: ['value','value2'],
+  labels: ['未处理人数','已处理人数']
+});
+</script>
+<script>
+new    Morris.Bar({
+  element: 'ke4',
+  data: [
+    { day: '{{ d7 }}', value: {{ke4wd7}},value2:{{ke4yd7}} },
+    { day: '{{ d6 }}', value: {{ke4wd6}},value2:{{ke4yd6}} },
+    { day: '{{ d5 }}', value: {{ke4wd5}},value2:{{ke4yd5}} },
+    { day: '{{ d4 }}', value: {{ke4wd4}},value2:{{ke4yd4}} },
+    { day: '{{ d3 }}', value: {{ke4wd3}},value2:{{ke4yd3}} },
+    { day: '{{ d2 }}', value: {{ke4wd2}},value2:{{ke4yd2}} },
+    { day: '{{ d1 }}', value: {{ke4wd1}},value2:{{ke4yd1}} }
+  ],
+  xkey: 'day',
+  ykeys: ['value','value2'],
+  labels: ['未处理人数','已处理人数']
+});
+</script>
+<script>
+new    Morris.Bar({
+  element: 'ke5',
+  data: [
+    { day: '{{ d7 }}', value: {{ke5wd7}},value2:{{ke5yd7}} },
+    { day: '{{ d6 }}', value: {{ke5wd6}},value2:{{ke5yd6}} },
+    { day: '{{ d5 }}', value: {{ke5wd5}},value2:{{ke5yd5}} },
+    { day: '{{ d4 }}', value: {{ke5wd4}},value2:{{ke5yd4}} },
+    { day: '{{ d3 }}', value: {{ke5wd3}},value2:{{ke5yd3}} },
+    { day: '{{ d2 }}', value: {{ke5wd2}},value2:{{ke5yd2}} },
+    { day: '{{ d1 }}', value: {{ke5wd1}},value2:{{ke5yd1}} }
+  ],
+  xkey: 'day',
+  ykeys: ['value','value2'],
+  labels: ['未处理人数','已处理人数']
+});
+</script>
+
+</body>
+
+
+</html>

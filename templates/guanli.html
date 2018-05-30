@@ -1,0 +1,124 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>省级预约挂号统一平台</title>
+    <!-- Bootstrap Styles-->
+    <link href="/static/css/bootstrap.css" rel="stylesheet" />
+    <!-- FontAwesome Styles-->
+    <link href="/static/css/font-awesome.css" rel="stylesheet" />
+    <!-- Morris Chart Styles-->
+    <link href="/static/js/morris/morris-0.4.3.min.css" rel="stylesheet" />
+    <!-- Custom Styles-->
+    <link href="/static/css/custom-styles.css" rel="stylesheet" />
+    <!-- Google Fonts-->
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css' />
+    <link rel="stylesheet" href="/static/js/Lightweight-Chart/cssCharts.css">
+            <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+        <!--[if lt IE 9]>
+            <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+        <![endif]-->
+    <script src="/static/simple/js/jquery-1.10.2.js"></script>
+    <script src="/static/simple/js/jquery/supersized.3.2.7.min.js" ></script>
+    <script src="/static/simple/js/jquery/supersized-init.js" ></script>
+    <script src="/static/simple/js/jquery/scripts.js" ></script>
+    <script src="/static/simple/js/md5.js" ></script>
+    <script src="/static/simple/js/a_index.js" ></script>
+
+</head>
+
+<body>
+    <div id="wrapper">
+        <nav class="navbar navbar-default top-navbar" role="navigation">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="admin"><strong>挂号系统管理员</strong></a>
+        </nav>
+        <!--/. NAV TOP  -->
+        <nav class="navbar-default navbar-side" role="navigation">
+            <div class="sidebar-collapse">
+                <ul class="nav" id="main-menu">
+                    <li>
+                        <a href="admin"><i class="fa fa-dashboard"></i> 数据统计</a>
+                    </li>
+                    <li>
+                        <a  href="bingren.html"><i class="fa fa-desktop"></i> 病人管理</a>
+                    </li>
+					<li>
+                        <a href="#"><i class="fa fa-bar-chart-o"></i> 医院管理<span class="fa arrow"></span></a>                        <ul class="nav nav-second-level">
+                         <ul class="nav nav-second-level">
+                                    <li>
+                                        <a href="yiyuan.html">医院人员管理</a>
+                                    </li>
+                                    <li>
+                                        <a  href="keshi.html">医院科室管理</a>
+                                    </li>
+                                    <li>
+                                        <a href="yaopin.html">医院药品管理</a>
+                                    </li>
+                                </ul>
+
+                    </li>
+                </ul>
+                    <li>
+                        <a class="active-menu" href="guanli.html"><i class="fa fa-qrcode"></i> 管理员管理</a>
+                    </li>
+                    </ul>
+
+            </div>
+
+        </nav>
+        <!-- /. NAV SIDE  -->
+
+
+      
+		<div id="page-wrapper">
+		  <div class="header"> 
+                        <h1 class="page-header">
+                            管理员管理 <small>Welcome </small>
+                        </h1>
+						<ol class="breadcrumb">
+					  <li><a href="admin">首页</a></li>
+					  <li class="active">管理员管理</li>
+					</ol>
+            <div id="page-inner">
+			<script src="/static/simple/js/admin_pwd.js"></script>
+			<div class="table">
+				<table class="listing form" cellpadding="0" cellspacing="0"><tbody>
+					<tr>
+						<th class="full" colspan="2">密码修改</th>
+					</tr>
+					<tr>
+						<td class="first" width="172"><strong>旧密码</strong></td>
+						<td class="last"><input class="form-control" type="password" id="old_pwd" /></td>
+					</tr>
+					<tr class="bg">
+						<td class="first"><strong>新密码</strong></td>
+						<td class="last"><input class="form-control" type="password" id="pwd" /></td>
+					</tr>
+					<tr>
+						<td class="first"><strong>确认密码</strong></td>
+						<td class="last"><input class="form-control" type="password" id="pwd2" /></td>
+					</tr>
+					<tr class="bg">
+						<td class="first">&nbsp;</td>
+						<td class="last">
+							<input  class="btn btn-primary" type="button" value="修改" id="btn_submit" />
+						</td>
+					</tr>
+				</tbody></table>
+				<p>&nbsp;</p>
+		    </div>
+                </div>
+
+
+
+        </div>
+        <!-- /. PAGE WRAPPER  -->
+    </div>
+
+
+</body>
+
+</html>
